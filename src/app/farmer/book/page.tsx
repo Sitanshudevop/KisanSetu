@@ -40,7 +40,8 @@ export default function BookSlot() {
               <div className="relative">
                 <MapPin className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
                 <select 
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none transition-all cursor-pointer"
+                  style={{ colorScheme: "dark" }}
                   value={formData.mandiId}
                   onChange={e => setFormData({...formData, mandiId: e.target.value})}
                   required
@@ -56,14 +57,21 @@ export default function BookSlot() {
                 <label className="block text-gray-200 font-bold mb-2">Date</label>
                 <div className="relative">
                   <Calendar className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
-                  <input type="date" required className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none" onChange={e => setFormData({...formData, date: e.target.value})} />
+                  <input 
+                    type="date" 
+                    required 
+                    className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-50 [&::-webkit-calendar-picker-indicator]:hover:opacity-100" 
+                    style={{ colorScheme: "dark" }}
+                    onChange={e => setFormData({...formData, date: e.target.value})} 
+                    onClick={(e) => (e.target as HTMLInputElement).showPicker()}
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="block text-gray-200 font-bold mb-2">Time Slot</label>
                 <div className="relative">
                   <Clock className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
-                  <select required className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none" onChange={e => setFormData({...formData, time: e.target.value})}>
+                  <select required className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none cursor-pointer" style={{ colorScheme: "dark" }} onChange={e => setFormData({...formData, time: e.target.value})}>
                     <option>08:00 AM - 10:00 AM</option>
                     <option>10:00 AM - 12:00 PM</option>
                     <option>12:00 PM - 02:00 PM</option>
@@ -78,7 +86,8 @@ export default function BookSlot() {
                 <div className="relative">
                   <Wheat className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
                   <select 
-                    className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-200 focus:ring-2 focus:ring-green-500 outline-none cursor-pointer"
+                    style={{ colorScheme: "dark" }}
                     value={formData.crop}
                     onChange={e => setFormData({...formData, crop: e.target.value})}
                   >

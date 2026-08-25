@@ -64,17 +64,17 @@ export function QRScanner({ onScanSuccess }: QRScannerProps) {
           Scan Farmer QR Code
         </button>
       ) : (
-        <div className="bg-white p-4 rounded-xl shadow-lg border border-slate-200">
+        <div className="bg-slate-900 p-4 rounded-xl shadow-lg border border-slate-800">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="font-bold text-slate-800 text-lg">Scanning QR Code...</h3>
+            <h3 className="font-semibold text-white text-lg">Scanning QR Code...</h3>
             <button
               onClick={stopScanner}
-              className="p-2 bg-red-100 text-red-600 rounded-full hover:bg-red-200"
+              className="bg-red-500/10 text-red-400 hover:bg-red-500/20 p-2 rounded-full transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
-          <div id="reader" className="w-full max-w-sm mx-auto overflow-hidden rounded-lg"></div>
+          <div id="reader" className="w-full max-w-sm mx-auto overflow-hidden rounded-lg border border-dashed border-slate-500 bg-slate-800/50 p-2 [&_a]:text-blue-400 [&_a]:hover:text-blue-300 [&_a]:font-medium [&_a]:transition-colors [&_img]:invert [&_img]:opacity-80 [&_svg]:text-white [&_svg_*]:stroke-current"></div>
         </div>
       )}
     </div>

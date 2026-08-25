@@ -35,12 +35,12 @@ export default function OfficerDashboard() {
 
   const handleExportEnam = () => {
     const payload = generateEnamLotPayload("MND-AZD-01", mockCompletedTokens);
-    setExportModal({ isOpen: true, title: "e-NAM Standard Format", payload, schemaType: "e-NAM v2.4" });
+    setExportModal({ isOpen: true, title: "National Market (e-NAM) Data Sync", payload, schemaType: "e-NAM v2.4" });
   };
 
   const handleExportPfms = () => {
     const payload = generatePfmsDbtPayload("TR-DL-AZD-01", mockCompletedTokens);
-    setExportModal({ isOpen: true, title: "PFMS DBT Payment Batch", payload, schemaType: "PFMS DBT v1.1.0" });
+    setExportModal({ isOpen: true, title: "Direct Benefit Transfer (PFMS) Payments", payload, schemaType: "PFMS DBT v1.1.0" });
   };
 
   return (
@@ -145,7 +145,7 @@ export default function OfficerDashboard() {
               onClick={handleExportEnam}
               className="w-full bg-slate-800 hover:bg-slate-900 border border-slate-600 text-white font-semibold py-2.5 rounded-lg transition-colors"
             >
-              Export e-NAM Standard JSON
+              Sync Market Data (e-NAM)
             </button>
           </div>
 
@@ -162,7 +162,7 @@ export default function OfficerDashboard() {
               onClick={handleExportPfms}
               className="w-full bg-slate-800 hover:bg-slate-900 border border-slate-600 text-white font-semibold py-2.5 rounded-lg transition-colors"
             >
-              Generate PFMS Payment Batch
+              Process Farmer Payments (PFMS)
             </button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { User, Truck, ClipboardCheck, DollarSign, ArrowRight, Loader2, Bell } from "lucide-react";
+import { User, Truck, ClipboardCheck, DollarSign, ArrowRight, Loader2, Bell, CheckCircle } from "lucide-react";
 
 // Mock data for tokens (In a real app, this would be fetched from /api/tokens)
 const initialTokens = [
@@ -22,6 +22,7 @@ export function QueueManager() {
   const [tokens, setTokens] = useState(initialTokens);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [notifiedIds, setNotifiedIds] = useState<Record<string, boolean>>({});
+  const [notification, setNotification] = useState<string | null>(null);
 
   const handleUpdateStatus = async (tokenId: string, nextStatus: string) => {
     setUpdatingId(tokenId);
@@ -38,7 +39,8 @@ export function QueueManager() {
   const handleNotify = (tokenId: string) => {
     // Simulate SMS/WhatsApp trigger
     setNotifiedIds(prev => ({ ...prev, [tokenId]: true }));
-    alert(`Mock: SMS & WhatsApp notification sent to Farmer #${tokenId}`);
+    setNotification('SMS & WhatsApp notification sent to Farmer successfully.');
+    setTimeout(() => setNotification(null), 3000);
   };
 
   return (
@@ -110,6 +112,13 @@ export function QueueManager() {
           </div>
         );
       })}
+
+      {notification && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-slate-800 border border-emerald-500/50 text-white px-6 py-4 rounded-xl shadow-2xl transition-all duration-300 animate-in slide-in-from-bottom-5">
+          <CheckCircle className="w-5 h-5 text-emerald-400" />
+          <span className="font-medium">{notification}</span>
+        </div>
+      )}
     </div>
   );
 }

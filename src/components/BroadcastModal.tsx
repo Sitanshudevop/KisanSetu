@@ -33,10 +33,10 @@ export function BroadcastModal({ isOpen, onClose, reason, affectedCount }: Broad
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 px-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex justify-between items-center p-5 border-b border-slate-200 bg-red-600 text-white">
+      <div className="bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="flex justify-between items-center p-5 border-b border-red-700 bg-red-900 text-white">
           <h2 className="text-xl font-bold">Emergency Broadcast Simulation</h2>
-          <button onClick={onClose} disabled={isSending} className="text-red-200 hover:text-white transition-colors">
+          <button onClick={onClose} disabled={isSending} className="text-red-300 hover:text-white transition-colors">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -49,45 +49,51 @@ export function BroadcastModal({ isOpen, onClose, reason, affectedCount }: Broad
           </div>
         ) : (
           <div className="p-6">
-            <div className="bg-red-50 text-red-800 p-4 rounded-lg mb-6 text-sm border border-red-200 font-semibold">
+            <div className="bg-red-900/20 text-red-400 p-4 rounded-lg mb-6 text-sm border border-red-900/50 font-semibold">
               You are about to trigger an emergency cascade for {affectedCount} affected tokens due to: "{reason}".
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* SMS Preview */}
-              <div className="border border-slate-200 rounded-lg overflow-hidden">
-                <div className="bg-slate-100 p-3 border-b border-slate-200 flex items-center">
-                  <Smartphone className="w-5 h-5 text-slate-600 mr-2" />
-                  <span className="font-bold text-slate-700">SMS / WhatsApp Preview</span>
+              <div className="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden">
+                <div className="p-3 border-b border-slate-700 flex items-center">
+                  <Smartphone className="w-5 h-5 text-slate-400 mr-2" />
+                  <span className="font-bold text-slate-300">SMS / WhatsApp Preview</span>
                 </div>
-                <div className="p-4 bg-green-50 h-48 overflow-y-auto">
-                  <div className="bg-white p-3 rounded-lg shadow-sm text-sm text-slate-800 mb-2 border border-slate-200 inline-block max-w-[90%]">
+                <div className="p-4 h-48 overflow-y-auto">
+                  <div className="bg-emerald-900/30 border border-emerald-800/50 text-slate-200 p-4 rounded-xl shadow-sm text-sm mb-2 inline-block max-w-[90%]">
                     🚨 <strong>Important Notice:</strong><br/>
-                    Mandi Azadpur timings adjusted today due to <strong>{reason}</strong>. Your slot has been protected but shifted.<br/><br/>
+                    Krishi Upaj Mandi, Durg timings adjusted today due to <strong>{reason}</strong>. Your slot has been protected but shifted.<br/><br/>
                     Reply <strong>1</strong> to confirm the auto-assigned slot, or <strong>2</strong> to pick a free alternative date.
                   </div>
                 </div>
               </div>
 
               {/* IVR Preview */}
-              <div className="border border-slate-200 rounded-lg overflow-hidden">
-                <div className="bg-slate-100 p-3 border-b border-slate-200 flex items-center">
-                  <Mic className="w-5 h-5 text-slate-600 mr-2" />
-                  <span className="font-bold text-slate-700">IVR Queue Simulation</span>
+              <div className="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden">
+                <div className="p-3 border-b border-slate-700 flex items-center">
+                  <Mic className="w-5 h-5 text-slate-400 mr-2" />
+                  <span className="font-bold text-slate-300">Broadcast Summary</span>
                 </div>
-                <div className="p-4 h-48 overflow-y-auto text-sm font-mono bg-slate-900 text-green-400">
-                  <p>Queuing {affectedCount} calls...</p>
-                  <p className="text-slate-400">Initiating Voice API Batch...</p>
-                  {Array.from({ length: Math.min(affectedCount, 5) }).map((_, i) => (
-                    <p key={i}>+91-987654{Math.floor(1000 + Math.random() * 9000)} ... [READY]</p>
-                  ))}
-                  {affectedCount > 5 && <p>... and {affectedCount - 5} more</p>}
+                <div className="p-4 h-48 overflow-y-auto flex flex-col justify-center space-y-4">
+                  <div className="flex justify-between items-center text-sm border-b border-slate-700/50 pb-2">
+                    <span className="text-slate-400">Target Audience</span>
+                    <span className="text-slate-200 font-semibold">{affectedCount} Farmers</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm border-b border-slate-700/50 pb-2">
+                    <span className="text-slate-400">Channels</span>
+                    <span className="text-slate-200 font-semibold">SMS, WhatsApp & Automated Voice</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-slate-400">Status</span>
+                    <span className="text-emerald-400 font-semibold">Ready for Dispatch</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="mt-8 flex justify-end">
-              <button onClick={onClose} disabled={isSending} className="px-5 py-2 text-slate-600 font-bold hover:bg-slate-100 rounded-lg mr-3">Cancel</button>
+              <button onClick={onClose} disabled={isSending} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-800 font-bold rounded-lg mr-3 transition-colors">Cancel</button>
               <button 
                 onClick={handleBroadcast}
                 disabled={isSending}
