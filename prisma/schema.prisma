@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  FARMER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum MandiStatus {
+  OPEN
+  CLOSED
+}
+
+enum TokenStatus {
+  BOOKED
+  ARRIVED
+  WEIGHMENT
+  QUALITY_CHECK
+  PURCHASE_ENTRY
+  PAYMENT_INITIATED
+  COMPLETED
+}
+
+model User {
+  id                 String   @id @default(uuid())
+  role               Role     @default(FARMER)
+  phoneNumber        String   @unique
+  languagePreference String   @default("en")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  
+  tokens             Token[]
+}
+
+model Mandi {
+  id                 String      @id @default(uuid())
+  location           String
+  dailyCapacityLimit Int
+  activeTokensCount  Int         @default(0)
+  status             MandiStatus @default(OPEN)
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  tokens             Token[]
+}
+
+model Token {
+  id                String       @id @default(uuid())
+  farmerId          String
+  mandiId           String
+  scheduledDate     DateTime
+  cropType          String
+  estimatedQuantity Float
+  qrCodeHash        String       @unique
+  status            TokenStatus  @default(BOOKED)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  farmer            User         @relation(fields: [farmerId], references: [id])
+  mandi             Mandi        @relation(fields: [mandiId], references: [id])
+  timelineEvents    TimelineEvent[]
+}
+
+model TimelineEvent {
+  id        String      @id @default(uuid())
+  tokenId   String
+  status    TokenStatus
+  notes     String?
+  createdAt DateTime    @default(now())
+
+  token     Token       @relation(fields: [tokenId], references: [id])
+}
+
+model AuditLog {
+  id            String   @id @default(cuid())
+  timestamp     DateTime @default(now())
+  officerId     String
+  officerName   String
+  actionType    String
+  tokenRef      String?
+  previousValue String?
+  newValue      String?
+  ipAddress     String?
+}
