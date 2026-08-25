@@ -18,7 +18,7 @@ import { GlobalHeader } from "@/components/GlobalHeader";
 import { AppWrapper } from "@/components/AppWrapper";
 
 export const metadata: Metadata = {
-  title: "Farmer & Procurement App",
+  title: "Kisan Setu | Smart Agri-Procurement Platform",
   description: "Phase 1 Web App for Farmers and Procurement Officers",
   manifest: "/manifest.json",
 };
@@ -37,6 +37,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#15803d" />
         <link rel="apple-touch-icon" href="/icon.png" />
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2334d399' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.5 2 9a7 7 0 0 1-10 9z'/><path d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.5 12 13 13 12'/></svg>" />
       </head>
       <body className="min-h-full flex flex-col bg-[#121212] text-gray-200 selection:bg-green-500/30">
         <LanguageProvider>
