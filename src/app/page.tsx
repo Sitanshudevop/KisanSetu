@@ -52,7 +52,7 @@ export default function Home() {
         >
           <div className="flex-grow">
             <div className="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
-              <Activity className="w-8 h-8" />
+              <ShieldCheck className="w-8 h-8" />
             </div>
             <h2 className="text-2xl font-bold text-slate-100 group-hover:text-blue-400 transition-colors">
               Mandi Officer (Admin)
